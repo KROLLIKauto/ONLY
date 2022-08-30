@@ -76,24 +76,27 @@ const AuthForm = ({isValidEmail}) => {
     register,
     formState: {
       errors,
-      isSubmitted,
     },
     handleSubmit,
+    reset,
   } = useForm({
     mode: 'onBlur'
   })
-  
   const history = useNavigate()
   const [errFlag, setErrFlag] = useState(false)
   const [userMail, setUserMAil] = useState('')
+  const [disabled, setDisabled] = useState(false)
+
   const onSubmit = (data) => {
     if (
       data.login === 'steve.jobs@example.com'
       && data.password === 'password'
     ) {
+      setDisabled(true)
       setTimeout(() => {
         isValidEmail(data.login)
         history('/mainPage')
+        setDisabled(false)
     }, 1000)
     }
     setUserMAil(data.login)
@@ -122,7 +125,7 @@ const AuthForm = ({isValidEmail}) => {
         <EnterButton 
           type="submit"
           value='Войти'
-          disabled={isSubmitted}
+          disabled={disabled}
         />
       </Form>
     </div>
