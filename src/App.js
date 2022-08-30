@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import AuthForm from "./components/AuthForm"
+import { Routes, Route, Navigate } from 'react-router-dom'
+import MainPage from "./components/MainPage";
+import { useState } from "react";
+import Header from "./components/Header";
 
 function App() {
+  const [user, setUser] = useState('')
+
+  const isValidEmail = (login) => {
+    setUser(login)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Routes>
+        <Route path="/authForm" element={<AuthForm isValidEmail={isValidEmail} />} />
+        <Route path="/mainPage" element={<MainPage user={user} />} />
+
+        <Route path="/" element={<Navigate replace to="/authForm" />} />
+      </Routes>
     </div>
   );
 }
