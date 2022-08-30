@@ -85,6 +85,7 @@ const AuthForm = ({isValidEmail}) => {
   
   const history = useNavigate()
   const [errFlag, setErrFlag] = useState(false)
+  const [userMail, setUserMAil] = useState('')
   const onSubmit = (data) => {
     if (
       data.login === 'steve.jobs@example.com'
@@ -95,13 +96,14 @@ const AuthForm = ({isValidEmail}) => {
         history('/mainPage')
     }, 1000)
     }
+    setUserMAil(data.login)
     data.login !== 'steve.jobs@example.com' && setErrFlag(true)
   }
 
   return (
     <div>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        {errFlag && <Error>Пользователя test.user@example.com не существует</Error>}
+        {errFlag && <Error>Пользователя {userMail} не существует</Error>}
         <Label>Логин</Label>
           <Input {...register('login', {
             required: true
