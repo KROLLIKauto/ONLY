@@ -13,6 +13,6 @@ color: #000000;
 
 export default function Header() {
   return (
-    <Title>ONLY.</Title>
+    <Title>ONLY</Title>
   )
 }
