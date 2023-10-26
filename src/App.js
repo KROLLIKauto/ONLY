@@ -2,7 +2,7 @@ import AuthForm from "./components/AuthForm"
 import { Routes, Route, Navigate } from 'react-router-dom'
 import MainPage from "./components/MainPage";
 import { useState } from "react";
-import Header from "./components/Header";
+import Header from "./components/Header"
 
 function App() {
   const [user, setUser] = useState('')
